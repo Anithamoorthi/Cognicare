@@ -14,7 +14,7 @@ const Chatbot = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post('https://cognicare-1-lxfi.onrender.com', { message: userMsg }, {
+      const res = await axios.post('https://cognicare-1-lxfi.onrender.com/api/chat/message', { message: userMsg }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMessages(prev => [...prev, { sender: 'bot', text: res.data.reply }]);

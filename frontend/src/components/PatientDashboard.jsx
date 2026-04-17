@@ -24,7 +24,7 @@ const PatientDashboard = ({ activeTab, setActiveTab }) => {
     const fetchHistory = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('https://cognicare-1-lxfi.onrender.com', {
+        const res = await axios.get('https://cognicare-1-lxfi.onrender.com/api/tests/history', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setHistory(res.data);
@@ -41,7 +41,7 @@ const PatientDashboard = ({ activeTab, setActiveTab }) => {
       if (history.length === 7 && (!user.riskLevel || user.riskLevel === 'Pending')) {
         try {
           const token = localStorage.getItem('token');
-          const res = await axios.post('https://cognicare-1-lxfi.onrender.com', {}, {
+          const res = await axios.post('https://cognicare-1-lxfi.onrender.com/api/chat/evaluate', {}, {
             headers: { Authorization: `Bearer ${token}` }
           });
           // Refresh page or global state normally here, 
@@ -65,7 +65,7 @@ const PatientDashboard = ({ activeTab, setActiveTab }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post('https://cognicare-1-lxfi.onrender.com', { message: msg }, {
+      const res = await axios.post('https://cognicare-1-lxfi.onrender.com/api/chat/message', { message: msg }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setChatMessages(prev => [...prev, { role: 'assistant', content: res.data.reply }]);

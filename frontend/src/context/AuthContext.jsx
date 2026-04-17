@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      axios.get('https://cognicare-1-lxfi.onrender.com', {
+      axios.get('https://cognicare-1-lxfi.onrender.com/api/auth/me', {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => {
