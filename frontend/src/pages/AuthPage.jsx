@@ -17,7 +17,7 @@ const AuthPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const res = await axios.post('https://cognicare-1-lxfi.onrender.com', { email, password });
       login(res.data);
       navigate('/');
     } catch (error) {
@@ -28,7 +28,7 @@ const AuthPage = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/auth/register', { name, email, password, role, language });
+      await axios.post('https://cognicare-1-lxfi.onrender.com', { name, email, password, role, language });
       setTab('login');
       alert('Registered Successfully. Please Login.');
     } catch (error) {

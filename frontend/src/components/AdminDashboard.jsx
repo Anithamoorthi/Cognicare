@@ -20,8 +20,8 @@ const AdminDashboard = ({ activeTab, setActiveTab }) => {
     try {
       const token = localStorage.getItem('token');
       const [patientsRes, caregiversRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/auth/patients', { headers: { Authorization: `Bearer ${token}` } }),
-        axios.get('http://localhost:5000/api/auth/caregivers', { headers: { Authorization: `Bearer ${token}` } })
+        axios.get('https://cognicare-1-lxfi.onrender.com', { headers: { Authorization: `Bearer ${token}` } }),
+        axios.get('https://cognicare-1-lxfi.onrender.com', { headers: { Authorization: `Bearer ${token}` } })
       ]);
       setPatients(patientsRes.data);
       setCaregivers(caregiversRes.data);
@@ -33,7 +33,7 @@ const AdminDashboard = ({ activeTab, setActiveTab }) => {
   const fetchPatientHistory = async (patientId) => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get(`http://localhost:5000/api/tests/patient/${patientId}`, {
+      const res = await axios.get(`https://cognicare-1-lxfi.onrender.com/${patientId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPatientHistory(res.data);
@@ -50,7 +50,7 @@ const AdminDashboard = ({ activeTab, setActiveTab }) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/auth/patients/add', newPatient, {
+      await axios.post('https://cognicare-1-lxfi.onrender.com', newPatient, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setShowAddModal(false);
@@ -65,7 +65,7 @@ const AdminDashboard = ({ activeTab, setActiveTab }) => {
     if (!window.confirm('Are you sure you want to remove this user?')) return;
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/auth/users/${id}`, {
+      await axios.delete(`https://cognicare-1-lxfi.onrender.com/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchData();
@@ -77,7 +77,7 @@ const AdminDashboard = ({ activeTab, setActiveTab }) => {
   const handleAssign = async (patientId, caregiverId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/auth/assign', { patientId, caregiverId }, {
+      await axios.post('https://cognicare-1-lxfi.onrender.com', { patientId, caregiverId }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchData();
@@ -95,7 +95,7 @@ const AdminDashboard = ({ activeTab, setActiveTab }) => {
   const handleDownloadPDF = async (patient) => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get(`http://localhost:5000/api/tests/patient/${patient._id}`, {
+      const res = await axios.get(`https://cognicare-1-lxfi.onrender.com/${patient._id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       generatePatientPDF(patient.name, res.data);

@@ -14,7 +14,7 @@ const CaregiverDashboard = ({ activeTab, setActiveTab }) => {
   const fetchPatients = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/auth/caregiver/patients', {
+      const res = await axios.get('https://cognicare-1-lxfi.onrender.com', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPatients(res.data);
@@ -34,7 +34,7 @@ const CaregiverDashboard = ({ activeTab, setActiveTab }) => {
   const handleDownloadPDF = async (patient) => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get(`http://localhost:5000/api/tests/patient/${patient._id}`, {
+      const res = await axios.get(`https://cognicare-1-lxfi.onrender.com/${patient._id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       generatePatientPDF(patient.name, res.data);
