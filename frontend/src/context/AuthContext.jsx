@@ -10,20 +10,16 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-<<<<<<< HEAD
       axios.get('https://cognicare-1-lxfi.onrender.com/api/auth/me', {
-=======
-      axios.get('http://localhost:5000/api/auth/me', {
->>>>>>> 7c5991f (Initital commit)
         headers: { Authorization: `Bearer ${token}` }
       })
-      .then(res => {
-        setUser(res.data);
-      })
-      .catch(() => {
-        localStorage.removeItem('token');
-      })
-      .finally(() => setLoading(false));
+        .then(res => {
+          setUser(res.data);
+        })
+        .catch(() => {
+          localStorage.removeItem('token');
+        })
+        .finally(() => setLoading(false));
     } else {
       setLoading(false);
     }
