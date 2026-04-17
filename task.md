@@ -1,0 +1,25 @@
+# CogniCare Execution Checklist
+
+- `[x]` 1. Initialization
+  - `[x]` Create Backend folder
+  - `[x]` Create Frontend React Vite folder
+- `[/]` 2. Backend Development
+  - `[/]` Setup Express server & Mongoose
+  - `[ ]` Create Models (User, TestResult)
+  - `[ ]` Implement Auth endpoints (JWT)
+  - `[ ]` Implement Test result & Alert endpoints
+  - `[ ]` Integrate OpenAI logic for risk assessment
+- `[ ]` 3. Frontend Development
+  - `[ ]` Set up CSS/Global styles based on requested medical-grade aesthetic
+  - `[ ]` Router & Auth Context setup
+  - `[ ]` Login/Register UI with multi-language toggle
+  - `[ ]` Admin Dashboard screen
+  - `[ ]` Caregiver Dashboard screen
+  - `[ ]` Patient Dashboard screen
+- `[ ]` 4. Integration & Features
+  - `[ ]` WebRTC & Face-API.js (Eye tracking)
+  - `[ ]` Progressive daily tests implementation
+  - `[ ]` Speech-to-text Web API implementation
+  - `[ ]` Integration of Chatbot component
+- `[ ]` 5. Verification
+  - `[ ]` Test End-to-end user flows
