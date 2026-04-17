@@ -9,8 +9,9 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: "https://glittery-creponne-cdbecb.netlify.app",
-  credentials: true
+  origin: [
+    "https://glittery-creponne-cdbecb.netlify.app"
+  ]
 }));
 app.use(express.json());
 
