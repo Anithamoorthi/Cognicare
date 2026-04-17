@@ -142,7 +142,11 @@ const CognitiveTest = ({ day, onComplete }) => {
     const timeTaken = (Date.now() - startTime) / 1000;
     try {
       const token = localStorage.getItem('token');
+<<<<<<< HEAD
       await axios.post('https://cognicare-1-lxfi.onrender.com/api/tests/submit', {
+=======
+      await axios.post('http://localhost:5000/api/tests/submit', {
+>>>>>>> 7c5991f (Initital commit)
         day,
         score,
         maxScore,
