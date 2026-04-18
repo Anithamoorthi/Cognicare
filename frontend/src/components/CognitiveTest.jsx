@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import EyeTracker from './EyeTracker';
 import axios from 'axios';
+import API_BASE_URL from '../utils/api';
 
 const testDatabase = {
   1: { 
@@ -142,11 +143,7 @@ const CognitiveTest = ({ day, onComplete }) => {
     const timeTaken = (Date.now() - startTime) / 1000;
     try {
       const token = localStorage.getItem('token');
-<<<<<<< HEAD
-      await axios.post('https://cognicare-1-lxfi.onrender.com/api/tests/submit', {
-=======
-      await axios.post('http://localhost:5000/api/tests/submit', {
->>>>>>> 7c5991f (Initital commit)
+      await axios.post(`${API_BASE_URL}/api/tests/submit`, {
         day,
         score,
         maxScore,

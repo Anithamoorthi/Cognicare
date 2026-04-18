@@ -3,6 +3,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { Bar } from 'react-chartjs-2';
 import { LanguageContext } from '../context/LanguageContext';
 import axios from 'axios';
+import API_BASE_URL from '../utils/api';
 import { generatePatientPDF } from '../utils/pdfGenerator';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -14,7 +15,7 @@ const CaregiverDashboard = ({ activeTab, setActiveTab }) => {
   const fetchPatients = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('https://cognicare-1-lxfi.onrender.com/api/auth/caregiver/patients', {
+      const res = await axios.get(`${API_BASE_URL}/api/auth/caregiver/patients`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPatients(res.data);
@@ -34,7 +35,7 @@ const CaregiverDashboard = ({ activeTab, setActiveTab }) => {
   const handleDownloadPDF = async (patient) => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get(`https://cognicare-1-lxfi.onrender.com/api/tests/patient/${patient._id}`, {
+      const res = await axios.get(`${API_BASE_URL}/api/tests/patient/${patient._id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       generatePatientPDF(patient.name, res.data);

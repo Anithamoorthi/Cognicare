@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../utils/api';
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([{ sender: 'bot', text: 'Hello! I am CogniCare. How can I help you today?' }]);
@@ -14,7 +15,7 @@ const Chatbot = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post('https://cognicare-1-lxfi.onrender.com/api/chat/message', { message: userMsg }, {
+      const res = await axios.post(`${API_BASE_URL}/api/chat/message`, { message: userMsg }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMessages(prev => [...prev, { sender: 'bot', text: res.data.reply }]);

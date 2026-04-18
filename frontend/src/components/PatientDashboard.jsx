@@ -3,6 +3,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 import { Line } from 'react-chartjs-2';
 import CognitiveTest from './CognitiveTest';
 import axios from 'axios';
+import API_BASE_URL from '../utils/api';
 import { LanguageContext } from '../context/LanguageContext';
 import { AuthContext } from '../context/AuthContext';
 import { generatePatientPDF } from '../utils/pdfGenerator';
@@ -24,7 +25,7 @@ const PatientDashboard = ({ activeTab, setActiveTab }) => {
     const fetchHistory = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('https://cognicare-1-lxfi.onrender.com/api/tests/history', {
+        const res = await axios.get(`${API_BASE_URL}/api/tests/history`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setHistory(res.data);
@@ -41,7 +42,7 @@ const PatientDashboard = ({ activeTab, setActiveTab }) => {
       if (history.length === 7 && (!user.riskLevel || user.riskLevel === 'Pending')) {
         try {
           const token = localStorage.getItem('token');
-          const res = await axios.post('https://cognicare-1-lxfi.onrender.com/api/chat/evaluate', {}, {
+          const res = await axios.post(`${API_BASE_URL}/api/chat/evaluate`, {}, {
             headers: { Authorization: `Bearer ${token}` }
           });
           // Refresh page or global state normally here, 
@@ -65,7 +66,7 @@ const PatientDashboard = ({ activeTab, setActiveTab }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post('https://cognicare-1-lxfi.onrender.com/api/chat/message', { message: msg }, {
+      const res = await axios.post(`${API_BASE_URL}/api/chat/message`, { message: msg }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setChatMessages(prev => [...prev, { role: 'assistant', content: res.data.reply }]);
